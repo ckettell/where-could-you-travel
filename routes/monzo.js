@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
   const { client_id, redirect_uri } = oauthDetails;
   const monzoAuthUrl = 'https://auth.monzo.com';
   res.type('html');
-  res.send(` 
+  res.send(`
     <h1>Hello</h1>
     <form action="${monzoAuthUrl}">
       <input type="hidden" name="client_id" value="${client_id}" />
@@ -59,14 +59,12 @@ router.get('/oauth/callback', (req, res) => {
 router.get('/accounts', (req, res) => {
   const accountsUrl = 'https://api.monzo.com/accounts';
   const { token_type, access_token } = accessToken;
-  console.log(token_type + ' tokey type here');
 
   request.get(accountsUrl, {
     headers: {
       Authorization: `${token_type} ${access_token}`
     }
   }, (req, response, body) => {
-    console.log(body + ' BODY HERE');
     const { accounts } = JSON.parse(body);
     console.log(accounts + ' accounts here!!!!!');
 

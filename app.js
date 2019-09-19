@@ -9,6 +9,8 @@ var cors = require('cors')
 var usersRouter = require('./routes/users');
 var testAPIRouter = require('./routes/testAPI')
 var monzoRouter = require('./routes/monzo')
+var skyscannerRouter = require('./routes/monzo')
+
 
 
 var app = express();
@@ -27,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/testAPI', testAPIRouter);
+app.use('/skyscanner', skyscannerRouter);
 app.use('/', monzoRouter);
 
 
