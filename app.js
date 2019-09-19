@@ -9,7 +9,7 @@ var cors = require('cors')
 var usersRouter = require('./routes/users');
 var testAPIRouter = require('./routes/testAPI')
 var monzoRouter = require('./routes/monzo')
-var skyscannerRouter = require('./routes/monzo')
+var skyscannerRouter = require('./routes/skyscanner')
 
 
 

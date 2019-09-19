@@ -1,10 +1,13 @@
 require('dotenv').config()
 require('dotenv/config')
+const unirest = require('unirest');
 
 const express = require('express');
 const request = require('request');
 const app = express();
-var router = express.Router();
+const router = express.Router();
+
+const skyScannerBrowseQuotes = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/"
 
 const apiHeaders = {
   "x-rapidapi-host": process.env.RAPID_HOST,
@@ -12,6 +15,22 @@ const apiHeaders = {
   "content-type": "application/json"
 }
 
+unirest.get
+
 router.get('/', (req, res) => {
 
+  const options = {
+    url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/UK/gbp/en-EN/LOND-sky/PARI-sky/anytime/anytime',
+    headers: apiHeaders
+  }
+
+  request.get(options, (req, response, body) => {
+    const { whatever } = JSON.parse(body);
+
+    console.log(body);
+    console.log(whatever);
+  })
+
 })
+
+module.exports = router;
