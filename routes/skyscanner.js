@@ -20,16 +20,25 @@ unirest.get
 router.get('/', (req, res) => {
 
   const options = {
-    url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/UK/gbp/en-EN/LOND-sky/PARI-sky/anytime/anytime',
+    url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/UK/gbp/en-EN/LOND-sky/PARI-sky/2019-11-28/',
     headers: apiHeaders
   }
 
   request.get(options, (req, response, body) => {
-    const { whatever } = JSON.parse(body);
+    const { flights } = JSON.parse(body);
 
     console.log(body);
-    console.log(whatever);
-  })
+    console.log(flights);
+
+      res.write(`
+        <tr>
+          <td>${body}</td>
+        </tr>
+        `)
+
+
+    }
+  )
 
 })
 
