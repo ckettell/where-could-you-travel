@@ -25,18 +25,20 @@ router.get('/', (req, res) => {
   }
 
   request.get(options, (req, response, body) => {
-    const { flights } = JSON.parse(body);
 
     console.log(body);
-    console.log(flights);
+
+    // console.log(body);
+    // console.log(body["MinPrice"]);
+    // console.log(body[3]);
+
+
+
 
       res.write(`
-        <tr>
-          <td>${body}</td>
-        </tr>
-        `)
 
-
+          ${body}
+      `)
     }
   )
 
