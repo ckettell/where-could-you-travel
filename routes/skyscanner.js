@@ -26,7 +26,9 @@ router.get('/', (req, res) => {
 
   request.get(options, (req, response, body) => {
 
-    console.log(JSON.parse(body)['Quotes']);
+    const { flights }  = JSON.parse(body)
+    console.log(JSON.parse(body));
+
 
     // console.log(body);
     // console.log(body["MinPrice"]);
