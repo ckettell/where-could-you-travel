@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Transactions from './components/transactions'
 
 class App extends Component {
     state = { apiResponse: "hi" };
@@ -20,6 +21,7 @@ class App extends Component {
     return (
       <div className='App'>
        <p className='appIntro'>{this.state.apiResponse}</p>
+       <Transactions/>
       </div>
     )
     }
