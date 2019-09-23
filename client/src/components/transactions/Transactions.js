@@ -24,7 +24,7 @@ class Transactions extends Component {
       <div>
         <h2> Transactions </h2>
       </div>
-    )
+      )
     }
   }
 
