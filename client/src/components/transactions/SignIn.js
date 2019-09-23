@@ -21,11 +21,14 @@ class SignIn extends Component {
     .then(json => that.setState({ client_id: json['client_id']},
     that.setState({  client_secret: json['client_secret']}),
     that.setState({ redirect_uri: json['redirect_uri']})))
-    .then(() => this.setState({ redirect: true }))
-    .then(() => window.location.assign(`https://auth.monzo.com/?client_id=${this.state.client_id}&redirect_uri=${this.state.redirect_uri}&response_type=code`))
-
+    .then(() => this.relocateToMonzoSignIn())
   }
 
+  relocateToMonzoSignIn(){
+    window.location.assign(`https://auth.monzo.com/?client_id=
+      ${this.state.client_id}&redirect_uri=${this.state.redirect_uri}
+      &response_type=code`)
+  }
 
   callAPI(){
     fetch("/")
@@ -46,7 +49,7 @@ class SignIn extends Component {
         <button
           onClick={() => this.apiSignIn()}
           className='sign-in-button'>
-          <ul>
+          <ul> HI
           </ul>
         </button>
       </div>

@@ -12,7 +12,7 @@ router.use(cors())
 const oauthDetails = {
   client_id: process.env.CLIENT_ID,
   client_secret: process.env.CLIENT_SECRET,
-  redirect_uri: 'http://localhost:9000/oauth/callback'
+  redirect_uri: 'http://localhost:3000'
 };
 
 // Will be populated once received
