@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+
+
 
 class SignIn extends Component {
   constructor(){
     super();
     this.state = {
-      client_id: 'hi',
-      client_secret: 'bye'
+      client_id: '',
+      client_secret: '',
+      redirect_uri: '',
+      redirect: false
     }
   }
 
   apiSignIn(){
     const that = this;
     fetch('http://localhost:9000')
-    // .then(res => res.json())
     .then(response => response.json())
-    // .then(response => console.log(response['client_id']))
-    .then(response => that.setState({ client_id: response['client_id']},
-    that.setState({  client_secret: response['client_secret']})))
-    setTimeout(() => {
-      console.log(this.state.client_id + this.state.client_secret)
-    }, 1000);
+    .then(json => that.setState({ client_id: json['client_id']},
+    that.setState({  client_secret: json['client_secret']}),
+    that.setState({ redirect_uri: json['redirect_uri']})))
+    .then(() => this.setState({ redirect: true }))
+    .then(() => window.location.assign(`https://auth.monzo.com/?client_id=${this.state.client_id}&redirect_uri=${this.state.redirect_uri}&response_type=code`))
+
   }
 
 
@@ -29,16 +33,21 @@ class SignIn extends Component {
     .then(res => this.setState({ autho: res}, () => console.log('transations fetched', res)))
   }
 
-  componentDidMount(){
-    this.callAPI()
-  }
+  // componentDidMount(){
+  //   this.callAPI()
+  // }
 
   render() {
+
+
+
     return (
       <div>
         <button
           onClick={() => this.apiSignIn()}
           className='sign-in-button'>
+          <ul>
+          </ul>
         </button>
       </div>
       )
