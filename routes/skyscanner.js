@@ -21,35 +21,49 @@ router.get('/', (req, res) => {
 
   const flights = []
 
-  const paris = {
-    url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/UK/gbp/en-EN/LOND-sky/PARI-sky/2019-11-28/',
+  const france = {
+    url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/UK/gbp/en-EN/LOND-sky/FR-sky/2019-11-28/',
     headers: apiHeaders
   }
 
-  const reykjavik = {
-    url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/UK/gbp/en-EN/LOND-sky/REYK-sky/2019-11-28/',
+  const ireland = {
+    url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/UK/gbp/en-EN/LOND-sky/IE-sky/2019-11-28/',
     headers: apiHeaders
   }
 
-  request.get(paris, (req, response, body) => {
+  const iceland = {
+    url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/UK/gbp/en-EN/LOND-sky/IS-sky/2019-11-28/',
+    headers: apiHeaders
+  }
+
+  const spain = {
+    url: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/UK/gbp/en-EN/LOND-sky/ES-sky/2019-11-28/',
+    headers: apiHeaders
+  }
+
+  request.get(france, (req, response, body) => {
     flights.push(JSON.parse(body))
-    setTimeout(function(){
-        console.log(flights);
-      }, 3000);
     }
   )
 
-  request.get(reykjavik, (req, response, body) => {
+  request.get(iceland, (req, response, body) => {
     flights.push(JSON.parse(body))
-    setTimeout(function(){
-        console.log(flights);
-      }, 3000);
+    }
+  )
+
+  request.get(ireland, (req, response, body) => {
+    flights.push(JSON.parse(body))
+    }
+  )
+
+  request.get(spain, (req, response, body) => {
+    flights.push(JSON.parse(body))
     }
   )
 
   setTimeout(function(){
       res.json(flights);
-    }, 3000);
+    }, 1500);
 
 })
 

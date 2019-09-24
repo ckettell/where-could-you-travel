@@ -7,7 +7,7 @@ class GetPrices extends Component {
     this.state = {
       accessToken: '',
       redirect: false,
-      destinations: []
+      destinations: ''
     }
   }
 
@@ -18,17 +18,18 @@ class GetPrices extends Component {
   }
 
   calculateDestinationAndPrice(array){
+    const that = this
     const destinationsAdded = []
     array.forEach(function(json){
-      destinations.push({[json['Places'][0]['Name']]: json['Quotes'][0]['MinPrice']})
+      destinationsAdded.push({[json['Places'][0]['Name']]: json['Quotes'][0]['MinPrice']})
     })
     setTimeout(function(){
-        this.setState({  destinations: destinationsAdded})
-      }, 4000);
-      
+        that.setState({  destinations: destinationsAdded})
+      }, 2000);
+
     setTimeout(function(){
-        console.log(this.state.destinations);
-      }, 5000);
+        console.log(destinationsAdded);
+      }, 2500);
 
 
   }
