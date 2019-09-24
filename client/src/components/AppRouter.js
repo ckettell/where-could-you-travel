@@ -1,8 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import {Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignIn from './transactions/SignIn'
 import Transactions from './transactions/Transactions'
+import AuthCallBack from './transactions/AuthCallBack'
 
 
 const Main = () => (
@@ -10,6 +10,7 @@ const Main = () => (
     <Switch>
         <Route exact path="/" component={SignIn} />
         <Route path="/transations" component={Transactions} />
+        <Route path="/auth/callback" component={AuthCallBack} />
     </Switch>
   </Router>
   );
