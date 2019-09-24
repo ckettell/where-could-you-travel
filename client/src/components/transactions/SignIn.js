@@ -12,6 +12,10 @@ class SignIn extends Component {
     }
   }
 
+  componentDidMount(){
+    console.log(this.props.params);
+  }
+
   apiSignIn(){
     const that = this;
     fetch('http://localhost:9000')

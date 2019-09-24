@@ -25,24 +25,19 @@ router.get('/', (req, res) => {
   }
 
   request.get(options, (req, response, body) => {
+    const flights  = JSON.parse(body)
 
-    const { flights }  = JSON.parse(body)
-    console.log(JSON.parse(body));
+    setTimeout(function(){
+        res.json(flights);
+      }, 3000);
 
+    setTimeout(function(){
+        console.log(flights);
+      }, 3000);
 
-    // console.log(body);
-    // console.log(body["MinPrice"]);
-    // console.log(body[3]);
-
-
-
-
-      res.write(`
-
-          ${body}
-      `)
     }
   )
+
 
 })
 

@@ -12,7 +12,7 @@ router.use(cors())
 const oauthDetails = {
   client_id: process.env.CLIENT_ID,
   client_secret: process.env.CLIENT_SECRET,
-  redirect_uri: 'http://localhost:3000'
+  redirect_uri: 'http://localhost:3000/oauth/callback'
 };
 
 // Will be populated once received
@@ -26,7 +26,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/oauth/callback', (req, res) => {
-  res.redirect('/');
 
   const { client_id, client_secret, redirect_uri } = oauthDetails;
   const { code } = req.query;
@@ -42,12 +41,11 @@ router.post('/oauth/callback', (req, res) => {
       code
     }
   }, (err, response, body) => {
-    accessToken = JSON.parse(body); // Populate accessToken
+    // accessToken = JSON.parse(body); // Populate accessToken
     console.log(accessToken + ' access token here');
     res.redirect('/');
   });
   console.log('done');
-
 });
 
 

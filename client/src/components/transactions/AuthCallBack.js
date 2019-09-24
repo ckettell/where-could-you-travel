@@ -14,7 +14,6 @@ class AuthCallBack extends Component {
     fetch('http://localhost:9000/oauth/callback',{
     method: 'POST',
     data: JSON.stringify(this.state.accessToken)})
-    .then(res => res.text())
     .then(text => console.log(text))
     .then(redirect => this.setState({ redirect: true }))
   }
@@ -28,8 +27,7 @@ class AuthCallBack extends Component {
     return (
       <ul> HI
       </ul>
-      )
-
+    )
   }
 }
 
