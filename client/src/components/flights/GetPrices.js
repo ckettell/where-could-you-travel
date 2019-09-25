@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Redirect } from "react-router-dom";
+import Comparison from '../comparison/Comparison'
 
 class GetPrices extends Component {
   constructor(){
@@ -7,7 +8,7 @@ class GetPrices extends Component {
     this.state = {
       accessToken: '',
       redirect: false,
-      destinations: ''
+      destinations: []
     }
   }
 
@@ -29,10 +30,8 @@ class GetPrices extends Component {
       }, 2000);
 
     setTimeout(function(){
-        console.log(destinationsAdded);
+        console.log(that.state.destinations);
       }, 2500);
-
-
   }
 
   componentDidMount(){
@@ -41,8 +40,9 @@ class GetPrices extends Component {
 
   render() {
     return (
-      <ul> HI
-      </ul>
+      <div>
+        <Comparison flightPrices={this.state.destinations} />
+      </div>
     )
   }
 }
