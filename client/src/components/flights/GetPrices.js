@@ -21,7 +21,8 @@ class GetPrices extends Component {
     const that = this
     const destinationsAdded = []
     array.forEach(function(json){
-      destinationsAdded.push({[json['Places'][0]['Name']]: json['Quotes'][0]['MinPrice']})
+      console.log(json);
+      destinationsAdded.push({[json['Places'][0]['CountryName']]: json['Quotes'][0]['MinPrice']})
     })
     setTimeout(function(){
         that.setState({  destinations: destinationsAdded})
