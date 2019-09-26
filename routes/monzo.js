@@ -64,10 +64,11 @@ router.post('/oauth/callback', (req, res) => {
 
 
 router.get('/accounts', (req, res) => {
-  const here = req.session
-  const charlieHere = req.session.token
-  console.log(here);
-  console.log(charlieHere);
+  const here = JSON.stringify(req.query)
+  console.log(here + ' QUERY HERE');
+
+  const charlieHere = JSON.parse(req.query.token)
+  console.log(charlieHere + ' parsing token');
 
   const accountsUrl = 'https://api.monzo.com/accounts';
   console.log(accessToken);
