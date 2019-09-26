@@ -23,12 +23,10 @@ class AuthCallBack extends Component {
 
   componentDidMount(){
     this.updateAccessToken()
-
   }
 
   updateAccessToken(){
     const that = this
-
     this.setState({
       accessToken: queryString.parse(this.props.location.search).code
     })
