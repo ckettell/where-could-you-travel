@@ -4,9 +4,11 @@ require('dotenv/config')
 const express = require('express');
 const request = require('request');
 const cors = require('cors')
+const bodyParser = require('body-parser');
+const url = require('url');
+
 const app = express();
 const router = express.Router();
-var bodyParser = require('body-parser');
 
 
 router.use(cors())
@@ -48,20 +50,29 @@ router.post('/oauth/callback', (req, res) => {
   }, (err, response, body) => {
     const accessToken = JSON.stringify(body); // Populate accessToken
 
+    res.redirect(url.format({
+      pathname:"/accounts",
+      query: {
+        token: accessToken
+      }
+    }))
+
     console.log(accessToken + ' access token here');
-    res.redirect('/');
   });
   console.log('done');
 });
 
 
 router.get('/accounts', (req, res) => {
+  const here = req.session
+  const charlieHere = req.session.token
+  console.log(here);
+  console.log(charlieHere);
+
   const accountsUrl = 'https://api.monzo.com/accounts';
   console.log(accessToken);
-  const accessTokenParsed = JSON.parse(accessToken)
-  console.log(accessTokenParsed);
-  const token_type = accessTokenParsed['token_type']
-  const access_token = accessTokenParsed["access_token"]
+  const token_type = accessToken['token_type']
+  const access_token = accessToken["access_token"]
 
   console.log(token_type);
   console.log(access_token);
@@ -72,21 +83,11 @@ router.get('/accounts', (req, res) => {
     }
   }, (req, response, body) => {
     const { accounts } = JSON.parse(body);
+    const { id } = accounts
     console.log(accounts + ' accounts here!!!!!');
+    console.log(id);
+    res.redirect(`/transactions/${id}`);
 
-    res.type('html');
-    res.write(`<h1>${accounts}${req}${body}${response}</h1><ul>`);
-
-    for(let account of accounts) {
-      const {id, type, description } = account;
-      res.write(`
-        <li>
-          ${description}(<i>${type}</i>) - <a href="/transactions/${id}">View transaction history</a>
-        </li>
-      `);
-    }
-
-    res.end('</ul>');
   });
 });
 
