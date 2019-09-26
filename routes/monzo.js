@@ -6,8 +6,12 @@ const request = require('request');
 const cors = require('cors')
 const app = express();
 const router = express.Router();
+var bodyParser = require('body-parser');
+
 
 router.use(cors())
+router.use(bodyParser.json()); // support json encoded bodies
+router.use(bodyParser.urlencoded({ extended: false })); // support encoded bodies
 
 const oauthDetails = {
   client_id: process.env.CLIENT_ID,
@@ -28,7 +32,9 @@ router.get('/', (req, res) => {
 router.post('/oauth/callback', (req, res) => {
 
   const { client_id, client_secret, redirect_uri } = oauthDetails;
-  const { code } = req.query;
+  console.log(req);
+  console.log(req.body.token);
+  const { code } = req.body;
   const monzoAuthUrl = `https://api.monzo.com/oauth2/token`;
   console.log(code + ' code here');
   request.post({

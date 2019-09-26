@@ -27,7 +27,7 @@ class SignIn extends Component {
   }
 
   relocateToMonzoSignIn(){
-    window.location.assign(`https://auth.monzo.com/?client_id=${this.state.client_id}&redirect_uri=${this.state.redirect_uri}&response_type=code`)
+    window.location.assign(`https://auth.monzo.com/?client_id=${this.state.client_id}&redirect_uri=${this.state.redirect_uri}&response_type=code&state=${Date.now()}`)
   }
 
   render() {
