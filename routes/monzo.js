@@ -32,7 +32,6 @@ router.get('/', (req, res) => {
 router.post('/oauth/callback', (req, res) => {
 
   const { client_id, client_secret, redirect_uri } = oauthDetails;
-  console.log(req);
   console.log(req.body.token);
   const { code } = req.body;
   const monzoAuthUrl = `https://api.monzo.com/oauth2/token`;

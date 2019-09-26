@@ -22,8 +22,8 @@ class AuthCallBack extends Component {
   }
 
   componentDidMount(){
-    this.callAPI()
-    // this.updateAccessToken()
+    this.updateAccessToken()
+
   }
 
   updateAccessToken(){
@@ -32,12 +32,9 @@ class AuthCallBack extends Component {
     this.setState({
       accessToken: queryString.parse(this.props.location.search).code
     })
-
     setTimeout(function(){
-        console.log(that.state.accessToken);
-      }, 1500);
-
-    console.log(queryString.parse(this.props.location.search).code);
+        that.callAPI()
+    }, 1000);
   }
 
   render() {
