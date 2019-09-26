@@ -33,7 +33,7 @@ router.post('/oauth/callback', (req, res) => {
 
   const { client_id, client_secret, redirect_uri } = oauthDetails;
   console.log(req.body.token);
-  const { code } = req.body;
+  const code = req.body.token;
   const monzoAuthUrl = `https://api.monzo.com/oauth2/token`;
   console.log(code + ' code here');
   request.post({
@@ -46,7 +46,7 @@ router.post('/oauth/callback', (req, res) => {
       code
     }
   }, (err, response, body) => {
-    // accessToken = JSON.parse(body); // Populate accessToken
+    accessToken = JSON.parse(body); // Populate accessToken
     console.log(accessToken + ' access token here');
     res.redirect('/');
   });
