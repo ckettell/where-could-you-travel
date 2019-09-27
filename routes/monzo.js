@@ -48,32 +48,47 @@ router.post('/oauth/callback', (req, res) => {
       code
     }
   }, (err, response, body) => {
-    const accessToken = JSON.stringify(body); // Populate accessToken
+    const accessTokenVar = JSON.stringify(body); // Populate accessToken
+    const parseAccessTokenVar = JSON.parse(body)
+    accessToken = JSON.stringify(body)
+    parseAccessToken = JSON.parse(body)
 
     res.redirect(url.format({
       pathname:"/accounts",
       query: {
-        token: accessToken
+        token: accessTokenVar
       }
     }))
 
     console.log(accessToken + ' access token here');
+    console.log(parseAccessTokenVar + ' parsed token here');
+
   });
   console.log('done');
 });
 
 
 router.get('/accounts', (req, res) => {
-  const here = JSON.stringify(req.query)
-  console.log(JSON.stringify(req.body) + '  body here');
-  const charlieHereTwo = JSON.stringify(req.params)
-  console.log(here + ' QUERY HERE');
-  console.log(charlieHereTwo + ' QUERY HERE');
+  console.log(accessToken + ' access token here fron accounts');
+  const { token_type, access_token } = parseAccessToken;
 
-  const charlieHere = JSON.parse(req.query.token)
-  console.log(charlieHere + ' parsing token');
+  console.log(token_type);
+  console.log(access_token);
 
-  const accountsUrl = 'https://api.monzo.com/accounts';
+  console.log(token_type + ' token type');
+  console.log(access_token + ' access token');
+
+  // console.log(JSON.stringify(req.query.token.access_token) + ' ACCESS TOKEN query')
+  console.log(JSON.parse(req.query.token) + ' TOKEN query parse')
+  console.log(JSON.parse(req.query.token) + ' TOKEN query parse again')
+  console.log(JSON.parse(req.query) + ' TOKEN query parse again')
+
+
+
+
+    setTimeout(function(){
+        console.log(parseToken['access_token']);
+      }, 1000);
 
 
   request.get(accountsUrl, {
