@@ -60,9 +60,6 @@ router.post('/oauth/callback', (req, res) => {
       }
     }))
 
-    console.log(accessToken + ' access token here');
-    console.log(parseAccessTokenVar + ' parsed token here');
-
   });
   console.log('done');
 });
@@ -70,28 +67,39 @@ router.post('/oauth/callback', (req, res) => {
 
 router.get('/accounts', (req, res) => {
   const accountsUrl = 'https://api.monzo.com/accounts';
-  console.log(accessToken + ' access token here fron accounts');
   const { token_type, access_token } = parseAccessToken;
 
-  console.log(token_type + ' token type');
-  console.log(access_token + ' access token');
+  setTimeout(function(){
+    request.get(accountsUrl, {
+      headers: {
+        Authorization: `${token_type} ${access_token}`
+      }
+    }, (req, response, body) => {
+      accounts = JSON.parse(body);
+      console.log(accounts + ' accounts here!!!!!');
+      res.redirect(`/transactions`);
+
+    });
+  }, 10000)
 
 
-  request.get(accountsUrl, {
-    headers: {
-      Authorization: `${token_type} ${access_token}`
-    }
-  }, (req, response, body) => {
-    const { accounts } = JSON.parse(body);
-    console.log(body);
-    console.log(accounts + ' accounts here!!!!!');
-    // res.redirect(`/transactions/${id}`);
-
-  });
 });
 
 
-router.get('/transactions/:acc_id', (req, res) => {
+router.get('/transactions', (req, res) => {
+  console.log(JSON.stringify(accounts));
+
+  console.log(accounts + ' accounts are here too');
+
+  for (let account of accounts) {
+    const { id, type, description } = account
+    console.log(id);
+    console.log(type);
+    console.log(account);
+  }
+  console.log(id + ' id here');
+
+
   const { acc_id } = req.params;
   const { token_type, access_token } = accessToken;
   const transactionsUrl = `https://api.monzo.com/transactions?expand[]=merchant&account_id=${acc_id}`;
