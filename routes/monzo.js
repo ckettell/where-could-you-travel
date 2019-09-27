@@ -69,26 +69,12 @@ router.post('/oauth/callback', (req, res) => {
 
 
 router.get('/accounts', (req, res) => {
+  const accountsUrl = 'https://api.monzo.com/accounts';
   console.log(accessToken + ' access token here fron accounts');
   const { token_type, access_token } = parseAccessToken;
 
-  console.log(token_type);
-  console.log(access_token);
-
   console.log(token_type + ' token type');
   console.log(access_token + ' access token');
-
-  // console.log(JSON.stringify(req.query.token.access_token) + ' ACCESS TOKEN query')
-  console.log(JSON.parse(req.query.token) + ' TOKEN query parse')
-  console.log(JSON.parse(req.query.token) + ' TOKEN query parse again')
-  console.log(JSON.parse(req.query) + ' TOKEN query parse again')
-
-
-
-
-    setTimeout(function(){
-        console.log(parseToken['access_token']);
-      }, 1000);
 
 
   request.get(accountsUrl, {
@@ -97,10 +83,9 @@ router.get('/accounts', (req, res) => {
     }
   }, (req, response, body) => {
     const { accounts } = JSON.parse(body);
-    const { id } = accounts
+    console.log(body);
     console.log(accounts + ' accounts here!!!!!');
-    console.log(id);
-    res.redirect(`/transactions/${id}`);
+    // res.redirect(`/transactions/${id}`);
 
   });
 });
