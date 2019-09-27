@@ -75,9 +75,15 @@ router.get('/accounts', (req, res) => {
         Authorization: `${token_type} ${access_token}`
       }
     }, (req, response, body) => {
-      accounts = JSON.parse(body);
+      const { accounts } = JSON.parse(body);
       console.log(accounts + ' accounts here!!!!!');
-      res.redirect(`/transactions`);
+
+
+      for(let account of accounts) {
+        const {id, type, description } = account;
+        accountId = id
+        res.redirect(`/transactions`);
+      }
 
     });
   }, 10000)
@@ -87,21 +93,13 @@ router.get('/accounts', (req, res) => {
 
 
 router.get('/transactions', (req, res) => {
-  console.log(JSON.stringify(accounts));
+  console.log(accountId + ' account id printed in transactions');
+  const { token_type, access_token } = parseAccessToken;
 
   console.log(accounts + ' accounts are here too');
 
-  for (let account of accounts) {
-    const { id, type, description } = account
-    console.log(id);
-    console.log(type);
-    console.log(account);
-  }
-  console.log(id + ' id here');
-
 
   const { acc_id } = req.params;
-  const { token_type, access_token } = accessToken;
   const transactionsUrl = `https://api.monzo.com/transactions?expand[]=merchant&account_id=${acc_id}`;
 
   request.get(transactionsUrl, {
