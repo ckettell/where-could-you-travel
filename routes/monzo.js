@@ -94,52 +94,28 @@ router.get('/accounts', (req, res) => {
 
 router.get('/transactions', (req, res) => {
   console.log(accountId + ' account id printed in transactions');
+  console.log(parseAccessToken);
   const { token_type, access_token } = parseAccessToken;
 
-  console.log(accounts + ' accounts are here too');
+  console.log(token_type);
 
 
   const { acc_id } = req.params;
-  const transactionsUrl = `https://api.monzo.com/transactions?expand[]=merchant&account_id=${acc_id}`;
+  const transactionsUrl = `https://api.monzo.com/transactions?expand[]=merchant&account_id=${accountId}`;
 
   request.get(transactionsUrl, {
     headers: {
       Authorization: `${token_type} ${access_token}`
     }
   }, (req, response, body) => {
-    const { transactions } = JSON.parse(body);
+     const { transactions } = JSON.parse(body);
 
-    res.type('html');
-    res.write(`
-      <h1>Transactions</h1>
-      <table>
-        <thead>
-          <th>Description</th>
-          <th>Amount</th>
-          <th>Category</th>
-        </thead>
-        <tbody>
-    `);
+     setTimeout(function(){
+         res.json(transactions);
+       }, 15000);
 
-    for(let transaction of transactions) {
-      const {
-        description,
-        amount,
-        category
-      } = transaction;
-
-      res.write(`
-        <tr>
-          <td>${description}</td>
-          <td>&pound;${(amount/100).toFixed(2)}</td>
-          <td>${category}</td>
-        </tr>
-      `);
-    }
-
-    res.write('</tbody></table>');
-    res.end('<br /><a href="/accounts">&lt; Back to accounts</a>');
   });
 });
+
 
 module.exports = router;

@@ -35,7 +35,10 @@ class GetPrices extends Component {
   }
 
   componentDidMount(){
-    this.callAPI()
+    setTimeout(function(){
+        this.callAPI();
+      }, 1500);
+
   }
 
   render() {

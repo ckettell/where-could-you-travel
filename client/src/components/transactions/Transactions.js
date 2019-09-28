@@ -10,19 +10,25 @@ class Transactions extends Component {
 
 
   callAPI(){
-    fetch("/transactions/:acc_id")
+    const that = this;
+    fetch("http://localhost:9000/transactions")
     .then(res => res.text())
     .then(res => this.setState({ transactions: res}, () => console.log('transations fetched', res)))
+    .then(() => console.log(that.state.transactions))
   }
 
   componentDidMount(){
-    this.callAPI()
+    const that = this
+
+    setTimeout(function(){
+        that.callAPI();
+      }, 20000);
   }
 
   render() {
     return (
       <div>
-        <h2> Transactions </h2>
+        <h2> {this.state.transactions} </h2>
       </div>
       )
     }

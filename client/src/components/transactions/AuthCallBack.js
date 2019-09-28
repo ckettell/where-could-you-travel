@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Redirect } from "react-router-dom";
+import Transactions from './Transactions'
 const queryString = require('query-string');
+
 
 class AuthCallBack extends Component {
   constructor(){
@@ -39,9 +41,10 @@ class AuthCallBack extends Component {
     const code = queryString.parse(this.props.location.search).code
     console.log(code);
 
-    if (this.state.redirect) return <Redirect to='/' />
+    if (this.state.redirect) return <Redirect to='/comparison' />
     return (
       <ul> HI
+      <Transactions />
       </ul>
     )
   }
