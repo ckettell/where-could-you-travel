@@ -22,7 +22,7 @@ class Transactions extends Component {
 
     setTimeout(function(){
         that.callAPI();
-      }, 20000);
+      }, 25000);
   }
 
   render() {
