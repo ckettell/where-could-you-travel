@@ -4,7 +4,8 @@ class Transactions extends Component {
   constructor(){
     super();
     this.state = {
-      transactions: []
+      transactions: [],
+      formattedTransactions: []
     }
   }
 
@@ -17,18 +18,44 @@ class Transactions extends Component {
     .then(() => console.log(that.state.transactions))
   }
 
+  formatTransactions(){
+
+    const that = this;
+
+    const formattedTransactions = [];
+
+    for(let transaction of this.state.transactions){
+      const {description,
+             amount,
+             category
+           } = transaction;
+
+           formattedTransactions.push({description: description, amount: amount, category: category})
+    }
+
+    setTimeout(function(){
+      that.setState({
+        formattedTransactions: formattedTransactions
+      })
+    }, 1000)
+
+  }
+
   componentDidMount(){
     const that = this
 
     setTimeout(function(){
         that.callAPI();
-      }, 25000);
+        that.formatTransactions();
+      }, 10000);
+
+      console.log(that.state.formattedTransactions);
   }
 
   render() {
     return (
       <div>
-        <h2> {this.state.transactions} </h2>
+        <h2> {this.state.formattedTransactions} </h2>
       </div>
       )
     }

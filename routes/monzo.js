@@ -48,7 +48,7 @@ router.post('/oauth/callback', (req, res) => {
       code
     }
   }, (err, response, body) => {
-    const accessTokenVar = JSON.stringify(body); // Populate accessToken
+    const accessTokenVar = JSON.stringify(body);
     const parseAccessTokenVar = JSON.parse(body)
     accessToken = JSON.stringify(body)
     parseAccessToken = JSON.parse(body)
@@ -109,10 +109,21 @@ router.get('/transactions', (req, res) => {
     }
   }, (req, response, body) => {
      const { transactions } = JSON.parse(body);
+     const formattedTransactions = [];
+
+     for(let transaction of transactions){
+
+       const {description,
+              amount,
+              category
+            } = transaction;
+
+      formattedTransactions.push({description: description, amount: (amount/100).toFixed(2), category: category})
+     }
 
      setTimeout(function(){
-         res.json(transactions);
-       }, 15000);
+         res.json(formattedTransactions);
+       }, 2000);
 
   });
 });
