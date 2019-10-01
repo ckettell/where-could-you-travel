@@ -30,6 +30,7 @@ class Comparisons extends Component {
     return (
       <div>
         <h2> {this.iterateOverFlights(flights)}</h2>
+        <h2> Comparison Page </h2>
       </div>
       )
     }

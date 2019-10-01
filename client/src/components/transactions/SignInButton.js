@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 
+
 class SignIn extends Component {
   constructor(){
     super();
@@ -36,7 +37,7 @@ class SignIn extends Component {
         <button
           onClick={() => this.apiSignIn()}
           className='sign-in-button'>
-          <ul> HI
+          <ul> Sign in Here
           </ul>
         </button>
       </div>
