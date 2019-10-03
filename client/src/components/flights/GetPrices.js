@@ -22,8 +22,7 @@ class GetPrices extends Component {
     const that = this
     const destinationsAdded = []
     array.forEach(function(json){
-      console.log(json);
-      destinationsAdded.push({[json['Places'][0]['CountryName']]: json['Quotes'][0]['MinPrice']})
+      destinationsAdded.push({location: json['Places'][0]['CountryName'], price:  json['Quotes'][0]['MinPrice']})
     })
     setTimeout(function(){
         that.setState({  destinations: destinationsAdded})
@@ -35,8 +34,9 @@ class GetPrices extends Component {
   }
 
   componentDidMount(){
+    const that = this;
     setTimeout(function(){
-        this.callAPI();
+        that.callAPI();
       }, 1500);
 
   }
