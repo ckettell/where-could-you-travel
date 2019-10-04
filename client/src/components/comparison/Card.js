@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import { animated, interpolate } from "react-spring/hooks";
+import { animated, interpolate } from "react-spring";
 import Carousel from 'nuka-carousel';
 
 
 class Card extends Component {
 
+
   render() {
     const { i, x, y, rot, scale, trans, bind, data } = this.props;
-    const { transaction, transactionPrice, location, locationPrice } = date[i];
+    console.log(data);
+    const { transaction, transactionPrice, location, locationPrice } = data[i];
 
 
     return (
@@ -47,4 +49,4 @@ Card.propTypes = {
   locationPrice: PropTypes.number
 };
 
-export default Card; 
+export default Card;

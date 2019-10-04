@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Deck from './Deck'
 
 class Comparisons extends Component {
   constructor(){
@@ -65,6 +66,7 @@ class Comparisons extends Component {
 
     return (
       <div>
+        <Deck transactionsAndFlights={this.state.flightsCheaperThanTransactions}/>
         <h2> Comparison Page </h2>
       </div>
       )

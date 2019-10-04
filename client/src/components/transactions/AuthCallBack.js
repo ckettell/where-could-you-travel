@@ -21,6 +21,7 @@ class AuthCallBack extends Component {
     .then(text => console.log(text))
     .then(redirect => this.setState({ redirect: true }))
     .then(() => console.log(JSON.stringify(this.state.accessToken)))
+    .then(() => this.renderRedirectToComparisonPage())
   }
 
   componentDidMount(){
@@ -37,14 +38,24 @@ class AuthCallBack extends Component {
     }, 1000);
   }
 
+  renderRedirectToComparisonPage(){
+    if(this.state.redirect){
+      return <Redirect to='/comparison' />
+      console.log("redirect was set off");
+    }
+
+  }
+
   render() {
     const code = queryString.parse(this.props.location.search).code
     console.log(code);
 
-    if (this.state.redirect) return <Redirect to='/comparison' />
     return (
       <ul> HI
       <Transactions />
+      <div>
+      {this.renderRedirectToComparisonPage()}
+      </div>
       </ul>
     )
   }

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useSpring } from 'react-spring/hooks'
+import React, { useState, useEffect } from 'react';
+import {useSprings, animated} from 'react-spring'
 import { useGesture } from 'react-with-gesture'
 
 import Card from './Card'
@@ -13,19 +13,23 @@ const to = i => ({
   rot: -10 + Math.random() * 20,
   delay: i * 100
 });
-
-const from = i = ({ rot: 0, scale: 1.5, y: -1000 });
+const from = i => ({ rot: 0, scale: 1.5, y: -1000 });
 
 const trans = (r, s) =>
 `perspective(1500px) rotateX(30deg) rotateY(${r /
 10}deg) rotateZ(${r}deg) scale(${s})`;
 
-function Deck() {
+function Deck(flightsAndTransactions) {
+
+  const data = flightsAndTransactions
+
+  console.log(JSON.stringify(data) + ' data here');
+
   const [gone] = useState(() => new Set());
 
 // here instead of data will need to find how my data is being delivered
-  const [props, set] = useSprings(data.length, i => ({
-    ...to(i)
+  const [propss, set] = useSprings(data.length, i => ({
+    ...to(i),
     from: from(i)
   }))
 
@@ -67,7 +71,13 @@ function Deck() {
     }
   )
 
-  return props.map(({ x, y, rot, scale }, i ) => (
+  useEffect(() => {
+    console.log(JSON.stringify(data) + ' data here');
+  })
+
+  // return null
+
+  return propss.map(({ x, y, rot, scale }, i ) => (
     <Card
       i={i}
       x={x}
@@ -81,4 +91,4 @@ function Deck() {
   ))
 }
 
-export default Deck; 
+export default Deck;
