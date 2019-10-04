@@ -40,16 +40,16 @@ class Comparisons extends Component {
 
       that.state.flights.forEach(function(flight, price){
         that.transactionsFormatted().forEach(function(transaction){
-          console.log(flight['price']);
+          // console.log(flight['price']);
+          //
+          // console.log(transaction['amount']);
 
-          console.log(transaction['amount']);
-
-          if(transaction['amount'] <= flight){
-            console.log(flight + 'fligh here');
+          if(transaction['amount'] > flight['price']){
+            flightsInsteadOfTransactions.push({transaction: transaction['description'], transactionAmount: transaction['amount'], location: flight['location'], flightPrice: flight['price']})
           }
-
         })
       })
+      console.log(flightsInsteadOfTransactions);
     }
 
 
