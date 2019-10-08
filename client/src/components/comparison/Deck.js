@@ -23,7 +23,10 @@ function Deck(flightsAndTransactions) {
 
   const data = flightsAndTransactions
 
+  console.log(data + ' data here');
   console.log(JSON.stringify(data) + ' data here');
+  console.log(JSON.stringify(propss) + ' props here');
+  console.log(JSON.stringify(set) + ' set here');
 
   const [gone] = useState(() => new Set());
 
@@ -73,6 +76,9 @@ function Deck(flightsAndTransactions) {
 
   useEffect(() => {
     console.log(JSON.stringify(data) + ' data here');
+    console.log(JSON.stringify(propss) + ' props here');
+    console.log(JSON.stringify(set) + ' set here');
+
   })
 
   // return null

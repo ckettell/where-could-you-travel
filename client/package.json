@@ -7,10 +7,14 @@
     "express": "^4.17.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-id-swiper": "^2.3.2",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "react-spring": "^8.0.27",
-    "react-with-gesture": "^4.0.8"
+    "react-swipe-card": "^0.1.4",
+    "react-with-gesture": "^4.0.8",
+    "redux": "^4.0.4",
+    "swiper": "^5.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

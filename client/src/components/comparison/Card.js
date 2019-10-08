@@ -9,7 +9,7 @@ class Card extends Component {
 
   render() {
     const { i, x, y, rot, scale, trans, bind, data } = this.props;
-    console.log(data);
+    console.log(data[i]);
     const { transaction, transactionPrice, location, locationPrice } = data[i];
 
 
