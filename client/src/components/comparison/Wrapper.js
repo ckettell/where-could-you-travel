@@ -2,6 +2,7 @@ import Cards, { Card } from 'react-swipe-card'
 import React, { useState, useEffect } from 'react';
 
 
+
 // const data = ['Alexandre', 'Thomas', 'Lucien']
 
 const Wrapper = (props) => {

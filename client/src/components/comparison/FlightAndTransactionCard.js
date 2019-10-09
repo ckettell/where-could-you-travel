@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
 
 class FlightAndTransactionCard extends Component {
@@ -12,22 +14,15 @@ class FlightAndTransactionCard extends Component {
 
 
     return (
+
     <div>
-      <Card style={{ width: '36rem' }}>
-        <Card.Body>
-          <Card.Title>{flights.location}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">{flights.transaction}</Card.Subtitle>
-          <ListGroup variant="flush">
-          <ListGroup.Item>
-          {flights.transactionAmount}
-          </ListGroup.Item>
-          <ListGroup.Item>
-          {flights.flightPrice}
-          </ListGroup.Item>
-          </ListGroup>
-        </Card.Body>
-      </Card>
-    </div>
+    <Card style={{ textAlign: 'center', fontSize: "50px" }}>
+    <CardBody body inverse style={{ backgroundColor: '#69dcff', borderColor: '#333' }}>
+      <CardTitle style={{  }}>You could have travelled to {flights.location} for £{flights.flightPrice}</CardTitle>
+      <CardText>Instead of the £{flights.transactionAmount} spent at {flights.transaction}.</CardText>
+    </CardBody>
+  </Card>
+</div>
     )
   }
 }
