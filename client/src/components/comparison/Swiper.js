@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Swiper from 'react-id-swiper';
 import FlightAndTransaction from './FlightAndTransaction'
+import FlightAndTransactionCard from './FlightAndTransactionCard'
 
 class SimpleSwiperWithParams extends Component{
   constructor(props){
@@ -11,8 +12,10 @@ class SimpleSwiperWithParams extends Component{
 render(){
   console.log('hello');
   var params = {
-    pagination: '.swiper-pagination',
-    paginationClickable: true,
+    containerClass: ".swiper-container",
+    // slidesPerView: "auto",
+    spaceBetween: 5,
+    freeMode: true,
     direction: "vertical"
   };
 
@@ -21,13 +24,12 @@ render(){
   const flightsAndTransactions = []
 
   that.props.transactionsAndFlights.forEach(function(flights, index){
-    flightsAndTransactions.push(<div>{flights.transaction}</div>);
+    flightsAndTransactions.push(<span>{<FlightAndTransactionCard flights={flights}/>}</span>);
   })
   console.log(flightsAndTransactions);
 
   return(
     <Swiper {...params}>
-  
     {flightsAndTransactions}
     </Swiper>
 

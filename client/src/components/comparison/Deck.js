@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {useSprings, animated} from 'react-spring'
 import { useGesture } from 'react-with-gesture'
 
-import Card from './Card'
-
 import './Deck.css'
 
 const to = i => ({
@@ -81,20 +79,20 @@ function Deck(flightsAndTransactions) {
 
   })
 
-  // return null
+  return null
 
-  return propss.map(({ x, y, rot, scale }, i ) => (
-    <Card
-      i={i}
-      x={x}
-      y={y}
-      rot={rot}
-      scale={scale}
-      trans={trans}
-      data={data}
-      bind={bind}
-    />
-  ))
+  // return propss.map(({ x, y, rot, scale }, i ) => (
+  //   <Card
+  //     i={i}
+  //     x={x}
+  //     y={y}
+  //     rot={rot}
+  //     scale={scale}
+  //     trans={trans}
+  //     data={data}
+  //     bind={bind}
+  //   />
+  // ))
 }
 
 export default Deck;
